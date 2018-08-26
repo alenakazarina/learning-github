@@ -59,7 +59,7 @@
 <code>git rebase mainBranch rebasingBranch</code>
 
 <h4>/* moving HEAD */</h4>
-<code>git checkout C1</code>
+<code>git checkout C1</code><br>
 <code>git checkout branchName</code>
 
 <h4>/* cancel changes locally */</h4>
