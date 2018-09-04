@@ -16,14 +16,22 @@
 <code>cat ~/.gitconfig</code>
 <!-- =========================== -->
 <h2>WORKING WITH REMOTE/LOCAL REPO</h2>
+<h4>Steps</h4>
+<ol>
+  <li>Fetch and merge changes from the remote</li>
+  <li>Create a branch to work on a new project feature</li>
+  <li>Develop the feature on your branch and commit your work</li>
+  <li>Fetch and merge from the remote again (in case new commits were made while you were working)</li>
+  <li>Push your branch up to the remote for review</li>
+</ol>
 <code>git remote -v</code>
 
 <h4>/* initializing - add remote - push changes */</h4>
 <code>git init</code><br>
 <code>git add fileName;</code>
 <code>git commit -m 'first commit'</code><br>
-<code><b>git remote add origin <ref></b></code><br>
-<code><b>git push</b></code>
+<code>git remote add remoteName ref</code><br>
+<code>git push</code>
 
 <h4>/* clone repo */</h4>
 <code>git clone remoteName branchName ref</code>
@@ -38,7 +46,7 @@
 <h4>/* push changes to remote */</h4>
 <code>git push</code><br>
 <code>git push origin master</code><sup>doesn't depend on where is HEAD now</sup><br>
-<code>git push origin src:<dest> </code><br>
+<code>git push origin src:dest </code><br>
 
 <h4>/* delete local branch with git fetch */</h4>
 <code>git fetch origin :foo</code>
@@ -53,8 +61,6 @@
 <code>git branch branchName</code><br>
 <code>git branch branchName master^^2^</code><sup>working with rel refs</sup>
 <br>
-<code>git checkout -b branchName</code><br>
-
 <code>git checkout -b branchName</code><br>
 <code>git rebase mainBranch rebasingBranch</code>
 
@@ -88,7 +94,7 @@
 <code>git checkout fe1p</code>
 
 <h4>/* to get commits pointwise */</h4>
-<code>git cherry-pick C1 C4 C6</code><br>
+<code>git cherry-pick C1 C4 C6</code><sup>C1' C4' C6' to locate after HEAD</sup><br>
 <code>git rebase -i HEAD~2</code><sup>rebase on HEAD~2, choose commits with editor, change the order, delete if no need</sup>
 
 <!-- =========================== -->
@@ -102,3 +108,25 @@
 
 <code>git checkout commitHash fileName</code><sup>remove fileName changes to commitHash</sup><br>
 <code>git reset fileName</code><sup>to remove file from index</sup><br>
+
+<!-- =========================== -->
+<h2>ALIASES</h2>
+<code>git config --global alias.a add</code><br>
+<code>git config --global alias.br branch</code><br>
+<code>git config --global alias.co checkout</code><br>
+<code>git config --global alias.ci commit</code><br>
+<code>git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short</code><br>
+
+<!-- =========================== -->
+<h2>SSH</h2>
+<p>public key</p>
+<p>private key</p>
+<p>directory: ~/.ssh</p>
+<h4>/* to generate keys */</h4>
+<code>ssh-keygen -t rsa -b 4096 -C "email@ya.ru"</code><br>
+<code>ssh -T -i ~/.ssh/key git@github.com</code><br>
+<br>
+<code>ssh -T  git@github.com</code><sup>если в конфиг прописать приватный ключ</sup><br>
+<code>~/.ssh/config</code><br>
+<code>Host github.com</code><br>
+<code>__Identity file ~/.ssh/key</code><br>
